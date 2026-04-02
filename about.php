@@ -13,7 +13,7 @@ include 'includes/header.php';
     </div>
 </section>
 <section class="section-shell mission-vision-section" aria-label="Mission and Vision">
-    <div class="container mission-vision-stack">
+    <div class="container mission-vision-stack reveal-on-scroll">
         <article class="glass-story-card mission-card no-leading-icon reveal-on-scroll" aria-labelledby="mission-title">
             <div class="story-copy">
                 <p class="eyebrow">Our mission</p>
@@ -39,8 +39,8 @@ include 'includes/header.php';
     </div>
 </section>
 <section class="section-shell about-intro-section">
-    <div class="container">
-        <h2 class="what-we-offer-title reveal-on-scroll">What We Offer</h2>
+    <div class="container reveal-on-scroll">
+        <h2 class="what-we-offer-title">What We Offer</h2>
         <div class="offer-grid">
             <article class="offer-card reveal-on-scroll">
                 <div class="offer-icon" aria-hidden="true"><img src="images/degree_database_icon.png" alt="" loading="lazy"></div>
