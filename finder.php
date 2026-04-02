@@ -256,7 +256,8 @@ include "includes/header.php";
                                             <div><strong style="color: #666;">Duration:</strong> <br><?php echo !empty($deg["duration"]) ? htmlspecialchars($deg["duration"]) : "Not Specified"; ?></div>
                                             <div><strong style="color: #666;">Medium:</strong> <br><?php echo !empty($deg["medium"]) ? htmlspecialchars($deg["medium"]) : "Not Specified"; ?></div>
                                             <div><strong style="color: #666;">Subject Req 1:</strong> <br><?php echo !empty($deg["subject1"]) ? htmlspecialchars($deg["subject1"]) : "-"; ?></div>
-                                            <div><strong style="color: #666;">Subject Req 2/3:</strong> <br><?php echo (!empty($deg["subject2"]) ? htmlspecialchars($deg["subject2"]) : "-") . " / " . (!empty($deg["subject3"]) ? htmlspecialchars($deg["subject3"]) : "-"); ?></div>
+                                            <div><strong style="color: #666;">Subject Req 2:</strong> <br><?php echo !empty($deg["subject2"]) ? htmlspecialchars($deg["subject2"]) : "-"; ?></div>
+                                            <div><strong style="color: #666;">Subject Req 3:</strong> <br><?php echo !empty($deg["subject3"]) ? htmlspecialchars($deg["subject3"]) : "-"; ?></div>
                                         </div>
                                         
                                         <?php if(!empty($deg["description"])): ?>
