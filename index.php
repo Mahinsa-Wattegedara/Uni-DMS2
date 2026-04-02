@@ -22,9 +22,30 @@ include 'includes/header.php';
             300+ programs across 25+ Sri Lankan universities — matched instantly to your ambitions and A/L results.
         </p>
         <div class="hero-cta-group">
-            <a class="btn btn-primary" href="finder.php">Find My Degree</a>
-            <a class="btn btn-ghost" href="universities.php">Browse Universities</a>
+            <a class="btn btn-primary" href="finder.php" id="findDegreeBtn" style="border: 3px solid red; z-index:9999; pointer-events:auto; position:relative !important;">Find My Degree</a>
+            <a class="btn btn-ghost" href="universities.php" id="browseUnisBtn" style="border: 3px solid blue; z-index:9999; pointer-events:auto; position:relative !important;">Browse Universities</a>
         </div>
+        <script>
+        // Debug: Force pointer events and alert on click
+        document.addEventListener('DOMContentLoaded', function() {
+            var findBtn = document.getElementById('findDegreeBtn');
+            var browseBtn = document.getElementById('browseUnisBtn');
+            if (findBtn) {
+                findBtn.addEventListener('click', function(e) {
+                    alert('FIND DEGREE BUTTON CLICKED');
+                    e.preventDefault();
+                    window.location.href = 'finder.php';
+                });
+            }
+            if (browseBtn) {
+                browseBtn.addEventListener('click', function(e) {
+                    alert('BROWSE UNIVERSITIES BUTTON CLICKED');
+                    e.preventDefault();
+                    window.location.href = 'universities.php';
+                });
+            }
+        });
+        </script>
         <div class="hero-stats-grid">
             <article class="stat-card">
                 <div class="stat-count" data-target-number="25" data-suffix="+">0</div>

@@ -264,19 +264,16 @@ const App = (() => {
 
 document.addEventListener('DOMContentLoaded', () => {
     App.init();
-    // Force navigation for hero buttons in the same tab
-    const findDegreeBtn = document.querySelector('.hero-cta-group .btn.btn-primary[href="finder.php"]');
-    const browseUnisBtn = document.querySelector('.hero-cta-group .btn.btn-ghost[href="universities.php"]');
-    if (findDegreeBtn) {
-        findDegreeBtn.addEventListener('click', function(e) {
+    // Robust event delegation for hero buttons
+    document.body.addEventListener('click', function(e) {
+        const findBtn = e.target.closest('.hero-cta-group .btn.btn-primary[href="finder.php"]');
+        const browseBtn = e.target.closest('.hero-cta-group .btn.btn-ghost[href="universities.php"]');
+        if (findBtn) {
             e.preventDefault();
-            window.location.href = 'finder.php';
-        });
-    }
-    if (browseUnisBtn) {
-        browseUnisBtn.addEventListener('click', function(e) {
+            window.location.assign('finder.php');
+        } else if (browseBtn) {
             e.preventDefault();
-            window.location.href = 'universities.php';
-        });
-    }
+            window.location.assign('universities.php');
+        }
+    });
 });
