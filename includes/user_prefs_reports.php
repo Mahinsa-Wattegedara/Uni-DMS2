@@ -70,7 +70,7 @@ $degOverall = getTopDegreesData($conn, null, $totO);
 
     .report-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: var(--space-8);
     }
 
@@ -190,6 +190,10 @@ $degOverall = getTopDegreesData($conn, null, $totO);
     }
 
     @media (max-width: 768px) {
+        .report-grid {
+            grid-template-columns: 1fr;
+        }
+
         .report-card {
             padding: var(--space-6);
         }
