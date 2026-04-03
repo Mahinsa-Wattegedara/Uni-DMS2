@@ -79,7 +79,7 @@ $degOverall = getTopDegrees($conn, null, $totO);
             
             <!-- Highest Demanded Degrees - Boys -->
             <div style="background: white; padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-light-md); border: 1px solid var(--light-300);">
-                <h3 style="color: var(--primary-600); margin-bottom: 0.5rem; font-size: 1.5rem;"><i class="fas fa-male"></i> Highest Demand: Boys</h3>
+                <h3 style="color: var(--primary-600); margin-bottom: 0.5rem; font-size: 1.5rem;"><i class="fas fa-male"></i> Highest Demand Degree: Boys</h3>
                 <p style="font-size: 0.95rem; color: var(--dark-500); margin-bottom: 1.5rem;">Top 5 degrees demanded specifically by male users (includes the preferred University).</p>
                 <div style="position: relative; height: 260px; width: 100%;">
                     <canvas id="boysChart"></canvas>
@@ -89,7 +89,7 @@ $degOverall = getTopDegrees($conn, null, $totO);
 
             <!-- Highest Demanded Degrees - Girls -->
             <div style="background: white; padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-light-md); border: 1px solid var(--light-300);">
-                <h3 style="color: var(--primary-600); margin-bottom: 0.5rem; font-size: 1.5rem;"><i class="fas fa-female"></i> Highest Demand: Girls</h3>
+                <h3 style="color: var(--primary-600); margin-bottom: 0.5rem; font-size: 1.5rem;"><i class="fas fa-female"></i> Highest Demand Degree: Girls</h3>
                 <p style="font-size: 0.95rem; color: var(--dark-500); margin-bottom: 1.5rem;">Top 5 degrees demanded specifically by female users (includes the preferred University).</p>
                 <div style="position: relative; height: 260px; width: 100%;">
                     <canvas id="girlsChart"></canvas>
@@ -99,7 +99,7 @@ $degOverall = getTopDegrees($conn, null, $totO);
 
             <!-- Highest Demanded Degrees - Overall -->
             <div style="background: white; padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-light-md); border: 1px solid var(--light-300);">
-                <h3 style="color: var(--primary-600); margin-bottom: 0.5rem; font-size: 1.5rem;"><i class="fas fa-globe"></i> Highest Demand: Overall</h3>
+                <h3 style="color: var(--primary-600); margin-bottom: 0.5rem; font-size: 1.5rem;"><i class="fas fa-globe"></i> Highest Demand Degree: Overall</h3>
                 <p style="font-size: 0.95rem; color: var(--dark-500); margin-bottom: 1.5rem;">The top 5 overall demanded degrees combined (includes the preferred University).</p>
                 <div style="position: relative; height: 260px; width: 100%;">
                     <canvas id="overallChart"></canvas>
