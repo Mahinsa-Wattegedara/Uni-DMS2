@@ -25,6 +25,12 @@ if ($id) {
 
 if ($university) {
     $uniName = $university['name'];
+    $degreeUniversityNames = [$uniName];
+    if ($uniName === 'University of Trincomalee') {
+        $degreeUniversityNames[] = 'Trincomalee Campus, Eastern University, Sri Lanka';
+    }
+
+    $placeholders = implode(', ', array_fill(0, count($degreeUniversityNames), '?'));
     $degreeStmt = $conn->prepare('
         SELECT DISTINCT 
             fz.degree_name, 
@@ -39,12 +45,14 @@ if ($university) {
         LEFT JOIN degrees d ON d.name = fz.degree_name
         LEFT JOIN departments dep ON d.department_id = dep.id
         LEFT JOIN faculties fac ON dep.faculty_id = fac.id AND fac.university_id = ?
-        WHERE fz.university_name = ?
+        WHERE fz.university_name IN (' . $placeholders . ')
         ORDER BY fz.degree_name ASC
     ');
 
     if ($degreeStmt) {
-        $degreeStmt->bind_param('is', $id, $uniName);
+        $bindTypes = 'i' . str_repeat('s', count($degreeUniversityNames));
+        $bindValues = array_merge([$id], $degreeUniversityNames);
+        $degreeStmt->bind_param($bindTypes, ...$bindValues);
         $degreeStmt->execute();
         $degrees = $degreeStmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $degreeStmt->close();
@@ -87,69 +95,64 @@ include 'includes/header.php';
     <section class="page-hero reveal-on-scroll detail-hero">
         <div class="container">
             <div class="hero-text">
-                <p class="eyebrow">University story</p>
                 <h1><?php echo htmlspecialchars($university['name']); ?></h1>
                 <p class="page-hero-meta"><?php echo htmlspecialchars(getUniversityDescription($university, 320)); ?></p>
-                <div class="breadcrumb">
-                    <a href="/index.php">Home</a>
-                    <span> / </span>
-                    <a href="/universities.php">Universities</a>
-                    <span> / </span>
-                    <span><?php echo htmlspecialchars($university['name']); ?></span>
-                </div>
-                <div class="pills">
-                    <span class="pill"><?php echo htmlspecialchars(getUniversityType($university)); ?></span>
-                    <span class="pill"><?php echo htmlspecialchars(getUniversityLocation($university)); ?></span>
-                </div>
             </div>
         </div>
     </section>
 
-    <section class="container reveal-on-scroll">
-        <div class="glass-panel">
-            <h2>Overview</h2>
-            <p><?php echo htmlspecialchars($university['description']); ?></p>
-            <?php if (!empty($university['website']) || !empty($university['contact']) || !empty($university['established_year'])): ?>
-                <div class="detail-meta">
-                    <div class="pills">
-                        <?php if (!empty($university['established_year'])): ?><span class="pill">Est. <?php echo htmlspecialchars($university['established_year']); ?></span><?php endif; ?>
-                        <?php if (!empty($university['website'])): ?><span class="pill"><a href="<?php echo htmlspecialchars($university['website']); ?>" target="_blank" rel="noreferrer">Website</a></span><?php endif; ?>
-                    </div>
-                    <?php if (!empty($university['contact'])): ?><p class="helper-text">Contact: <?php echo htmlspecialchars($university['contact']); ?></p><?php endif; ?>
-                </div>
-            <?php endif; ?>
+    <section class="container reveal-on-scroll university-programs">
+        <div class="section-heading section-heading--compact">
+            <h2>Featured degrees</h2>
+            <p class="section-subtitle">Grouped by stream for easier browsing and comparison.</p>
         </div>
-    </section>
-
-    <section class="container reveal-on-scroll">
-        <h2>Featured degrees</h2>
         <?php if (!empty($groupedDegrees)): ?>
-            <?php foreach ($groupedDegrees as $streamName => $streamDegrees): ?>
-                <div class="stream-group">
-                    <h3 class="stream-title" style="margin-top: 2rem; border-bottom: 2px solid var(--primary-color); padding-bottom: 0.5rem; display: inline-block; font-weight: bold;">
-                        <?php echo htmlspecialchars($streamName); ?>
-                    </h3>
-                    <div class="finder-results" style="margin-top: 1rem;">
-                        <?php foreach ($streamDegrees as $degree): ?>
-                            <article class="finder-card reveal-on-scroll">
-                                <h3 style="font-weight: normal;"><?php echo htmlspecialchars($degree['degree_name']); ?></h3>
-                                <?php if (!empty($degree['faculty_name'])): ?>
-                                    <p><strong>Faculty:</strong> <?php echo htmlspecialchars($degree['faculty_name']); ?></p>
-                                <?php endif; ?>
-                                <?php if (!empty($degree['duration'])): ?>
-                                    <p><strong>Duration:</strong> <?php echo htmlspecialchars($degree['duration']); ?></p>
-                                <?php endif; ?>
-                                <?php if (!empty($degree['medium'])): ?>
-                                    <p><strong>Medium:</strong> <?php echo htmlspecialchars($degree['medium']); ?></p>
-                                <?php endif; ?>
-                                <?php if (!empty($degree['description'])): ?>
-                                    <p><?php echo htmlspecialchars($degree['description']); ?></p>
-                                <?php endif; ?>
-                            </article>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+            <div class="program-streams">
+                <?php foreach ($groupedDegrees as $streamName => $streamDegrees): ?>
+                    <section class="program-stream">
+                        <div class="stream-header">
+                            <div>
+                                <p class="stream-kicker">Academic stream</p>
+                                <h3 class="stream-title"><?php echo htmlspecialchars($streamName); ?></h3>
+                            </div>
+                            <span class="stream-count"><?php echo count($streamDegrees); ?> programs</span>
+                        </div>
+                        <div class="program-grid">
+                            <?php foreach ($streamDegrees as $degree): ?>
+                                <article class="program-card reveal-on-scroll">
+                                    <div class="program-card__accent"></div>
+                                    <div class="program-card__body">
+                                        <h4><?php echo htmlspecialchars($degree['degree_name']); ?></h4>
+                                        <div class="program-meta">
+                                            <?php if (!empty($degree['faculty_name'])): ?>
+                                                <div class="program-meta__item">
+                                                    <span class="program-meta__label">Faculty</span>
+                                                    <span class="program-meta__value"><?php echo htmlspecialchars($degree['faculty_name']); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if (!empty($degree['duration'])): ?>
+                                                <div class="program-meta__item">
+                                                    <span class="program-meta__label">Duration</span>
+                                                    <span class="program-meta__value"><?php echo htmlspecialchars($degree['duration']); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                            <?php if (!empty($degree['medium'])): ?>
+                                                <div class="program-meta__item">
+                                                    <span class="program-meta__label">Medium</span>
+                                                    <span class="program-meta__value"><?php echo htmlspecialchars($degree['medium']); ?></span>
+                                                </div>
+                                            <?php endif; ?>
+                                        </div>
+                                        <?php if (!empty($degree['description'])): ?>
+                                            <p class="program-description"><?php echo htmlspecialchars($degree['description']); ?></p>
+                                        <?php endif; ?>
+                                    </div>
+                                </article>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+                <?php endforeach; ?>
+            </div>
         <?php else: ?>
             <p class="section-subtitle">No cataloged degrees are visible right now. Check back soon.</p>
         <?php endif; ?>

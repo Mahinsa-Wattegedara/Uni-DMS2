@@ -8,12 +8,13 @@ $pageStyles = ['css/pages/universities.css'];
 
 $searchTerm = trim($_GET['search'] ?? '');
 $universities = [];
-$whereClause = ' WHERE name IS NOT NULL AND TRIM(name) <> ?';
+$whereClause = ' WHERE name IS NOT NULL AND TRIM(name) <> ? AND name <> ?';
 $params = [];
-$paramTypes = 's';
+$paramTypes = 'ss';
 
-$placeholderNames = ['Unknown University'];
+$placeholderNames = ['Unknown University', 'University of Trincomalee'];
 $params[] = $placeholderNames[0];
+$params[] = $placeholderNames[1];
 
 if ($searchTerm !== '') {
     $whereClause .= ' AND (name LIKE ? OR location LIKE ? OR description LIKE ?)';
