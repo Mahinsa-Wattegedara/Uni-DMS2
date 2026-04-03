@@ -50,14 +50,21 @@ if ($gallery_files) {
 }
 ?>
 
+<section class="page-hero reveal-on-scroll" aria-label="Gallery hero">
+  <div class="container">
+    <p class="eyebrow">Gallery</p>
+    <h1>Moments from Campus Life</h1>
+    <p class="page-hero-meta">Explore academic highlights, cultural celebrations, sports events, and graduation memories from universities across Sri Lanka.</p>
+    <div class="breadcrumb">
+      <a href="index.php">Home</a>
+      <span>/</span>
+      <span>Gallery</span>
+    </div>
+  </div>
+</section>
+
 <section class="gallery-section">
   <div class="gallery-wrap">
-
-    <!-- Page title in reference style -->
-    <div class="gallery-heading">
-      <span class="gallery-dash">—</span>
-      <h1 class="gallery-title">GALLERY</h1>
-    </div>
 
     <?php if (empty($images)): ?>
       <div class="gallery-empty">
