@@ -53,11 +53,6 @@ include 'includes/header.php';
                 <p>Explore every available degree program, understand the modules, and access curated YouTube resources and study materials.</p>
             </article>
             <article class="offer-card reveal-on-scroll">
-                <div class="offer-icon" aria-hidden="true"><img src="images/icons/z_core_calculator_icon.png" alt="" loading="lazy"></div>
-                <h3>Smart Z-Score Calculator</h3>
-                <p>Take the guesswork out of university admissions. Input your results and instantly see which paths are open to you.</p>
-            </article>
-            <article class="offer-card reveal-on-scroll">
                 <div class="offer-icon" aria-hidden="true"><img src="images/icons/career_guidance_icon.png" alt="" loading="lazy"></div>
                 <h3>Career Guidance</h3>
                 <p>Not sure what to do next? Discover future career opportunities linked to specific degrees and get advice on how to get there.</p>
