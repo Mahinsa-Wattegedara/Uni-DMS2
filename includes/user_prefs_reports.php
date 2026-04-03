@@ -73,7 +73,7 @@ $degOverall = getTopDegreesData($conn, null, $totO);
     .report-title {
         font-size: 0.95rem;
         font-weight: 600;
-        color: var(--dark-900);
+        color: black;
         margin-bottom: 0.5rem;
         white-space: nowrap;
         overflow: hidden;
@@ -81,7 +81,7 @@ $degOverall = getTopDegreesData($conn, null, $totO);
     }
 
     .report-title span {
-        color: var(--dark-500);
+        color: #333;
         font-weight: 400;
     }
 
@@ -122,13 +122,13 @@ $degOverall = getTopDegreesData($conn, null, $totO);
         font-size: 0.8rem;
         text-align: right;
         font-weight: bold;
-        color: var(--dark-600);
+        color: black;
     }
 
     .report-gender-lbl {
         width: 36px;
         font-size: 0.75rem;
-        color: var(--dark-400);
+        color: #333;
         text-transform: uppercase;
         letter-spacing: 0.5px;
     }
@@ -143,7 +143,7 @@ $degOverall = getTopDegreesData($conn, null, $totO);
                 style="background: white; padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-light-md); border: 1px solid var(--light-300);">
                 <h3 style="color: black; margin-bottom: 0.5rem; font-size: 1.5rem;"><i class="fas fa-chart-line"></i>
                     Stream Preferences</h3>
-                <p style="font-size: 0.95rem; black; margin-bottom: 2rem;">Comparison between boys and
+                <p style="font-size: 0.95rem; color: black; margin-bottom: 2rem;">Comparison between boys and
                     girls.</p>
 
                 <div class="report-content">
@@ -252,7 +252,7 @@ $degOverall = getTopDegreesData($conn, null, $totO);
                                 </div>
                                 <div class="report-bar-row">
                                     <div class="report-bar-wrap">
-                                        <div class="report-bar bg-green" style="width: <?php echo $d['percent']; ?>%;"></div>
+                                        <div class="report-bar bg-blue" style="width: <?php echo $d['percent']; ?>%;"></div>
                                     </div>
                                     <div class="report-pct"><?php echo $d['percent']; ?>%</div>
                                 </div>
